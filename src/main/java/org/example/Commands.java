@@ -2,18 +2,28 @@ package org.example;
 
 import java.util.Scanner;
 
-public class Commands {
+public abstract class Commands {
     private final Scanner scanner = new Scanner(System.in);
     private final String name;
     private final String[] commands;
 
+    private String nextCommands;
 
-    public Commands(String name, String[] commands) {
+
+    public Commands(String name, String[] commands, String nextCommands) {
         this.name = name;
         this.commands = commands;
+        this.nextCommands = nextCommands;
+    }
+    abstract public void run();
 
+    public String getNextCommands() {
+        return nextCommands;
     }
 
+    public void setNextCommands(String nextCommands) {
+        this.nextCommands = nextCommands;
+    }
     public void printMessage(String message){
         System.out.println(message);
     }

@@ -23,11 +23,11 @@ public class Product {
         this.id = id;
         this.category = category;
         this.price = price;
-        this.stock = (int)(Math.random() * 20 + 1);
+        this.stock = (int) (Math.random() * 20 + 1);
         setProductCount(productCount + 1);
     }
 
-    public Product(String name, String category, int price){
+    public Product(String name, String category, int price) {
         this(name, category, category + "-" + productCount, price);
     }
 
@@ -43,16 +43,16 @@ public class Product {
         this.stock = stock;
     }
 
-    public void printMessage(String message){
+    public void printMessage(String message) {
         System.out.println(message);
     }
 
-    public void buyProduct(){
+    public void buyProduct() {
         setStock(this.stock - 1);
     }
-
-
-    public String getInfo(){
-        return name + ", £" + price + ", Stock: " + stock;
+    @Override
+    public String toString(){
+        return String.format("\n%s £%d Stock: %d",name, price, stock);
     }
+
 }
