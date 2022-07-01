@@ -35,12 +35,12 @@ public abstract class Commands {
             printMessage((i + 1) +  ": " + commands[i]);
         }
     }
-    public int getMoneyInput(){
+    public double getMoneyInput(){
         boolean isActive = true;
-        int input = 0;
+        double input = 0;
         while(isActive){
             printMessage("Enter a your money: ");
-            int userInput = scanner.nextInt();
+            double userInput = scanner.nextDouble();
             if(userInput > 0 ){
                 isActive = false;
                 input = userInput;
@@ -68,11 +68,28 @@ public abstract class Commands {
         return input;
     }
 
+    public int getRefillInput(){
+        boolean isActive = true;
+        int input = 0;
+        while(isActive){
+            printMessage("Enter your refill amount: ");
+            int userInput = scanner.nextInt();
+            if(userInput > 0 && userInput<= 50){
+                isActive = false;
+                input = userInput;
+            }else {
+                printMessage("Unable to understand input, try again");
+            }
+        }
+        scanner.nextLine();
+        return input;
+    }
+
     public String getStringInput(){
         boolean isActive = true;
         String input = "";
         while (isActive) {
-            printMessage("Enter text: ");
+            printMessage("Enter your code: ");
             String userInput = scanner.nextLine();
             if (userInput.length() != 0) {
                 isActive = false;

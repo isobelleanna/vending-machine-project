@@ -1,37 +1,39 @@
 package org.example;
 
+import java.text.DecimalFormat;
+
 public class Product {
-    private String name;
+    private boolean inStock;
+    private final String name;
     private String category;
-
-    private String id;
-    private int price;
+    private final String id;
+    private final double price;
     private int stock;
-
     private static int productCount = 0;
-
-    public static int getProductCount() {
-        return productCount;
-    }
 
     public static void setProductCount(int productCount) {
         Product.productCount = productCount;
     }
 
-    public Product(String name, String id, String category, int price) {
+    public Product(String name, String category, double price) {
         this.name = name;
-        this.id = id;
+        this.id = String.valueOf(productCount) +  name.charAt(0);
         this.category = category;
         this.price = price;
         this.stock = (int) (Math.random() * 20 + 1);
+        this.inStock = true;
         setProductCount(productCount + 1);
     }
 
-    public Product(String name, String category, int price) {
-        this(name, category, category + "-" + productCount, price);
+    public boolean isInStock() {
+        return inStock;
     }
 
-    public int getPrice() {
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
+    public double getPrice() {
         return price;
     }
 
@@ -40,19 +42,26 @@ public class Product {
     }
 
     public void setStock(int stock) {
-        this.stock = stock;
-    }
+        if(this.stock + stock >= 20){
+            this.stock = 20;
+        }else {
+            this.stock = stock;
+        }
 
-    public void printMessage(String message) {
-        System.out.println(message);
     }
-
     public void buyProduct() {
-        setStock(this.stock - 1);
+        if (this.stock == 1){
+            setStock(0);
+            setInStock(false);
+        }else {
+            setStock(this.stock - 1);
+        }
+
     }
     @Override
     public String toString(){
-        return String.format("\n%s £%d Stock: %d",name, price, stock);
+        return "\n"+ id + "-" + name + " £" + price + ", Stock Available: " + inStock + ", Total Stock: "+ stock;
+        //return String.format("\n%s £%d Stock: %d",name, price, stock);
     }
 
 }

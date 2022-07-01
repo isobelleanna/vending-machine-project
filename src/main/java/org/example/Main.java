@@ -15,18 +15,15 @@ public class Main {
                     break;
                 case "buy":
                     currentCommands = new BuyCommands();
-                    System.out.println("buy");
-                    isActive = false;
+                    currentCommands.run();
                     break;
                 case "refill":
                     currentCommands = new RefillCommands();
-                    System.out.println("refill");
-                    isActive = false;
+                    currentCommands.run();
                     break;
                 case "stock":
                     currentCommands = new StockCommands();
-                    System.out.println("Stock");
-                    isActive = false;
+                    currentCommands.run();
                     break;
                 default:
                     isActive = false;
